@@ -3,6 +3,7 @@ package cr.ac.unadeca.galeriaproyecto.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private final static CompositeDisposable disposables = new CompositeDisposable();
     private  Adapter getmSectionsPagerAdapter;
     private ViewPager mViewPager;
+    MediaPlayer mp1, mp2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +64,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         QuickContext = this;
         mSectionsPagerAdapter = new Adapter(getSupportFragmentManager());
+       mp1 = MediaPlayer.create(this,R.raw.tiny);
+
+
 
 
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         TabLayout tabLayout = findViewById(R.id.tabs);
-
+        mp1.start();
         mSectionsPagerAdapter.addFragment(new ImageFragment(), "Galeria");
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
@@ -91,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private  void nuevaImagen(){
+        mp1.start();
         Intent imagen = new Intent(this, AgregarImagenActivity.class);
         startActivityForResult(imagen, agregarImagen);
     }
@@ -108,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        mp1.start();
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

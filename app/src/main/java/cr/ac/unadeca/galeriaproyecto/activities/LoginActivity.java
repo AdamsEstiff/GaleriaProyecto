@@ -1,6 +1,7 @@
 package cr.ac.unadeca.galeriaproyecto.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Session session;
     private ImageView image;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         image = findViewById(R.id.imageLogin);
-
+        mp = MediaPlayer.create(this, R.raw.tiny);
         session = new Session(this);
         if(session.isLoggedIn()){
             goToMain();
@@ -48,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userna = username.getText().toString();
                 String passwo = password.getText().toString();
+                mp.start();
                 if (userna.isEmpty() || passwo.isEmpty()) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.loginerror), Toast.LENGTH_SHORT).show();
                 }
@@ -78,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private  void goToRegistrar(){
+        mp.start();
         Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(i);
         finish();

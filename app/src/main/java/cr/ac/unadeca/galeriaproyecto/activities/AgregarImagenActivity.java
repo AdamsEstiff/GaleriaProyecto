@@ -1,6 +1,7 @@
 package cr.ac.unadeca.galeriaproyecto.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,9 +30,12 @@ public class AgregarImagenActivity extends AppCompatActivity {
     private EditText autor;
     private File foto;
     private Imagen imagenAGuardar;
+    MediaPlayer mp1, mp2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        mp1 = MediaPlayer.create(this, R.raw.tiny);
+        mp2 = MediaPlayer.create(this, R.raw.camera);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agregarimagen);
         imagen = findViewById(R.id.imagen);
@@ -51,6 +55,7 @@ public class AgregarImagenActivity extends AppCompatActivity {
                 try{
                     validar();
                     guardarImagen();
+                    mp2.start();
                 }catch (Exception e){
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -64,6 +69,7 @@ public class AgregarImagenActivity extends AppCompatActivity {
     }
 
     private void abrirOpcionesDeImagenes(){
+        mp1.start();
         EasyImage.openChooserWithGallery(this, "De donde desea obtener la imagen?", 0);
     }
 
