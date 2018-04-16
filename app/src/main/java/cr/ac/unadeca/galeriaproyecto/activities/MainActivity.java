@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private final static CompositeDisposable disposables = new CompositeDisposable();
     private  Adapter getmSectionsPagerAdapter;
     private ViewPager mViewPager;
-    MediaPlayer mp1, mp2;
+    MediaPlayer mp1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
         QuickContext = this;
         mSectionsPagerAdapter = new Adapter(getSupportFragmentManager());
        mp1 = MediaPlayer.create(this,R.raw.tiny);
-
-
-
-
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         TabLayout tabLayout = findViewById(R.id.tabs);
